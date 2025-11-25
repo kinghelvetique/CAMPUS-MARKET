@@ -3,14 +3,57 @@ import { ShoppingBag } from 'lucide-react';
 import { Product } from '../types';
 
 const Gallery: React.FC = () => {
-  // Updated data with seeds more aligned to description if possible
+  // Products updated with images relevant to the description
+  // Using loremflickr with locks to ensure stability and relevance
   const products: Product[] = [
-    { id: 1, name: "HP Laptop 15", category: "Électronique", price: "150,000 FCFA", image: "https://picsum.photos/seed/hplaptop/400/300", description: "Idéal pour les projets académiques et recherches." },
-    { id: 2, name: "Casque Bluetooth", category: "Électronique", price: "15,000 FCFA", image: "https://picsum.photos/seed/audioheadset/400/300", description: "Concentration maximale pour vos révisions." },
-    { id: 3, name: "Sac à dos Campus", category: "Mode", price: "10,000 FCFA", image: "https://picsum.photos/seed/studentbag/400/300", description: "Robuste, spacieux et stylé pour les cours." },
-    { id: 4, name: "Pack Cahiers (x5)", category: "Scolaire", price: "5,000 FCFA", image: "https://picsum.photos/seed/paperbooks/400/300", description: "Le nécessaire pour toutes vos matières." },
-    { id: 5, name: "Sneakers Urban", category: "Mode", price: "25,000 FCFA", image: "https://picsum.photos/seed/runningshoes/400/300", description: "Confort pour la marche quotidienne sur le campus." },
-    { id: 6, name: "Clé USB 64GB", category: "Électronique", price: "7,000 FCFA", image: "https://picsum.photos/seed/usbflash/400/300", description: "Sauvegardez vos thèses et exposés en sécurité." },
+    { 
+        id: 1, 
+        name: "HP Laptop 15", 
+        category: "Électronique", 
+        price: "150,000 FCFA", 
+        image: "https://loremflickr.com/400/300/laptop,computer?lock=1", 
+        description: "Idéal pour les projets académiques et recherches." 
+    },
+    { 
+        id: 2, 
+        name: "Casque Bluetooth", 
+        category: "Électronique", 
+        price: "15,000 FCFA", 
+        image: "https://loremflickr.com/400/300/headphones,audio?lock=2", 
+        description: "Concentration maximale pour vos révisions." 
+    },
+    { 
+        id: 3, 
+        name: "Sac à dos Campus", 
+        category: "Mode", 
+        price: "10,000 FCFA", 
+        image: "https://loremflickr.com/400/300/backpack,student?lock=3", 
+        description: "Robuste, spacieux et stylé pour les cours." 
+    },
+    { 
+        id: 4, 
+        name: "Pack Cahiers (x5)", 
+        category: "Scolaire", 
+        price: "5,000 FCFA", 
+        image: "https://loremflickr.com/400/300/notebook,paper?lock=4", 
+        description: "Le nécessaire pour toutes vos matières." 
+    },
+    { 
+        id: 5, 
+        name: "Sneakers Urban", 
+        category: "Mode", 
+        price: "25,000 FCFA", 
+        image: "https://loremflickr.com/400/300/sneakers,shoes?lock=5", 
+        description: "Confort pour la marche quotidienne sur le campus." 
+    },
+    { 
+        id: 6, 
+        name: "Clé USB 64GB", 
+        category: "Électronique", 
+        price: "7,000 FCFA", 
+        image: "https://loremflickr.com/400/300/usb,flashdrive?lock=6", 
+        description: "Sauvegardez vos thèses et exposés en sécurité." 
+    },
   ];
 
   const handleOrder = (product: Product) => {
@@ -29,14 +72,14 @@ const Gallery: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
-            <div key={product.id} className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
-              <div className="aspect-w-4 aspect-h-3 bg-gray-200 overflow-hidden relative">
+            <div key={product.id} className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+              <div className="aspect-w-4 aspect-h-3 bg-gray-200 overflow-hidden relative h-56">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-2 right-2 bg-brand-orange text-white text-xs font-bold px-2 py-1 rounded-full">
+                <div className="absolute top-2 right-2 bg-brand-orange text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm">
                     {product.category}
                 </div>
               </div>
@@ -46,11 +89,11 @@ const Gallery: React.FC = () => {
                     <p className="text-sm text-gray-500 mb-4">{product.description}</p>
                 </div>
                 
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                   <span className="text-xl font-bold text-brand-orange">{product.price}</span>
                   <button 
                     onClick={() => handleOrder(product)}
-                    className="px-4 py-2 bg-gray-900 text-white text-sm font-bold rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 shadow-md"
+                    className="px-4 py-2 bg-gray-900 text-white text-sm font-bold rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 shadow-md transform active:scale-95"
                   >
                     <ShoppingBag className="w-4 h-4" />
                     Commander
@@ -61,7 +104,7 @@ const Gallery: React.FC = () => {
           ))}
         </div>
         
-        <div className="mt-16 text-center bg-gray-50 p-8 rounded-xl">
+        <div className="mt-16 text-center bg-gray-50 p-8 rounded-xl shadow-inner">
             <h3 className="text-lg font-bold text-gray-900 mb-2">Vous ne trouvez pas ce que vous cherchez ?</h3>
             <p className="text-gray-600 mb-6">
                 Nous avons accès à un large stock. Contactez-nous pour une commande personnalisée.
