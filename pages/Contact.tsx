@@ -7,7 +7,7 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const WHATSAPP_NUMBER = "2250153707186";
+  const WHATSAPP_NUMBER = "2250758002777";
 
   const handleWhatsAppRedirect = (text?: string) => {
       const message = text ? encodeURIComponent(text) : "";
